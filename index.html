@@ -162,21 +162,56 @@ image analysis and clinical decision support systems.
 </div>
 
 <div class="section">
-<h2>Publications</h2>
-<ol class="publication">
-    <li>
-        <strong>Cervical Spine Fracture Detection and Classification using Two-Stage Deep Learning Methodology</strong><br>
-        IEEE Access, 2024.
-        <a href="https://doi.org/10.1109/access.2024.3398061" target="_blank">DOI</a>
-    </li>
+<h2>Publications (from ORCID)</h2>
 
-    <li>
-        <strong>Metaverse in Healthcare Integrated with Explainable AI and Blockchain</strong><br>
-        Sensors, 2023.
-        <a href="https://doi.org/10.3390/s23020565" target="_blank">DOI</a>
-    </li>
-</ol>
+<p style="font-size:14px;color:#555;">
+This list is automatically generated from my
+<a href="https://orcid.org/0009-0004-2383-796X" target="_blank">ORCID record</a>.
+</p>
+
+<ul id="orcid-publications">
+    <li>Loading publications from ORCID…</li>
+</ul>
 </div>
+
+<script>
+const ORCID_ID = "0009-0004-2383-796X";
+const ORCID_API = `https://pub.orcid.org/v3.0/${ORCID_ID}/works`;
+
+fetch(ORCID_API, {
+    headers: {
+        "Accept": "application/json"
+    }
+})
+.then(response => response.json())
+.then(data => {
+    const works = data.group;
+    const list = document.getElementById("orcid-publications");
+    list.innerHTML = "";
+
+    works.forEach(work => {
+        const summary = work["work-summary"][0];
+        const title = summary.title?.title?.value || "Untitled";
+        const doiObj = summary["external-ids"]["external-id"]
+            .find(id => id["external-id-type"] === "doi");
+
+        let doiHTML = "";
+        if (doiObj) {
+            const doi = doiObj["external-id-value"];
+            doiHTML = ` – <a href="https://doi.org/${doi}" target="_blank">DOI</a>`;
+        }
+
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${title}</strong>${doiHTML}`;
+        list.appendChild(li);
+    });
+})
+.catch(error => {
+    document.getElementById("orcid-publications").innerHTML =
+        "<li>Unable to load publications from ORCID.</li>";
+});
+</script>
+
 
 <div class="section">
 <h2>Experience</h2>
