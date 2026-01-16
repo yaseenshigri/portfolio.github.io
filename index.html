@@ -78,6 +78,27 @@ ul {
 .publication li {
     margin-bottom: 12px;
 }
+.publication-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.pub-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #003366;
+    margin-bottom: 4px;
+}
+
+.pub-meta {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.pub-doi {
+    font-size: 14px;
+}
 
 footer {
     text-align: center;
@@ -162,15 +183,13 @@ image analysis and clinical decision support systems.
 </div>
 
 <div class="section">
-<h2>Publications (from ORCID)</h2>
+<h2>Publications</h2>
 
 <p style="font-size:14px;color:#555;">
-This list is automatically generated from my
 <a href="https://orcid.org/0009-0004-2383-796X" target="_blank">ORCID record</a>.
 </p>
 
 <ul id="orcid-publications">
-    <li>Loading publications from ORCID…</li>
 </ul>
 </div>
 
@@ -179,38 +198,50 @@ const ORCID_ID = "0009-0004-2383-796X";
 const ORCID_API = `https://pub.orcid.org/v3.0/${ORCID_ID}/works`;
 
 fetch(ORCID_API, {
-    headers: {
-        "Accept": "application/json"
-    }
+    headers: { "Accept": "application/json" }
 })
-.then(response => response.json())
+.then(res => res.json())
 .then(data => {
-    const works = data.group;
-    const list = document.getElementById("orcid-publications");
-    list.innerHTML = "";
+    const container = document.getElementById("orcid-publications");
+    container.innerHTML = "";
 
-    works.forEach(work => {
-        const summary = work["work-summary"][0];
-        const title = summary.title?.title?.value || "Untitled";
-        const doiObj = summary["external-ids"]["external-id"]
+    data.group.forEach(group => {
+        const w = group["work-summary"][0];
+
+        const title = w.title?.title?.value || "Untitled";
+        const year = w["publication-date"]?.year?.value || "";
+        const journal = w["journal-title"]?.value || "";
+
+        const doiObj = w["external-ids"]["external-id"]
             .find(id => id["external-id-type"] === "doi");
 
         let doiHTML = "";
         if (doiObj) {
             const doi = doiObj["external-id-value"];
-            doiHTML = ` – <a href="https://doi.org/${doi}" target="_blank">DOI</a>`;
+            doiHTML = `
+                <div class="pub-doi">
+                    DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>
+                </div>`;
         }
 
-        const li = document.createElement("li");
-        li.innerHTML = `<strong>${title}</strong>${doiHTML}`;
-        list.appendChild(li);
+        const div = document.createElement("div");
+        div.className = "publication-item";
+        div.innerHTML = `
+            <div class="pub-title">${title}</div>
+            <div class="pub-meta">
+                ${journal ? journal : "—"} ${year ? `(${year})` : ""}
+            </div>
+            ${doiHTML}
+        `;
+        container.appendChild(div);
     });
 })
-.catch(error => {
+.catch(() => {
     document.getElementById("orcid-publications").innerHTML =
-        "<li>Unable to load publications from ORCID.</li>";
+        "Unable to load publications from ORCID.";
 });
 </script>
+
 
 
 <div class="section">
