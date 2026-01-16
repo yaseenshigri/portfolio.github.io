@@ -298,7 +298,7 @@ section {
     border-bottom: 1px dashed rgba(255,255,255,0.5);
 }
 
-/* --- PROJECTS --- */
+/* --- PROJECTS --- (Styles kept in case you re-enable) */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -356,7 +356,7 @@ section {
     gap: 5px;
 }
 
-/* --- GALLERY --- */
+/* --- GALLERY --- (Styles kept in case you re-enable) */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -596,8 +596,10 @@ footer {
         <div class="nav-links" id="navLinks">
             <a href="#home" onclick="toggleMenu()">Home</a>
             <a href="#about" onclick="toggleMenu()">About</a>
-            <a href="#projects" onclick="toggleMenu()">Projects</a>
-            <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+            <!-- HIDDEN LINKS START -->
+            <!-- <a href="#projects" onclick="toggleMenu()">Projects</a> -->
+            <!-- <a href="#gallery" onclick="toggleMenu()">Gallery</a> -->
+            <!-- HIDDEN LINKS END -->
             <a href="#publications" onclick="toggleMenu()">Publications</a>
             <a href="#cv" onclick="toggleMenu()">CV & Exp</a>
             <a href="#contact" onclick="toggleMenu()">Contact</a>
@@ -628,7 +630,6 @@ footer {
         </div>
         <div class="hero-image">
             <div class="profile-wrapper">
-                <!-- Ensure your image is named profile.jpg or update src -->
                 <img src="profile.jpg" alt="Muhammad Yaseen" class="profile-pic">
             </div>
         </div>
@@ -685,7 +686,8 @@ footer {
     </div>
 </section>
 
-<!-- Projects Section -->
+<!-- PROJECTS SECTION HIDDEN START -->
+<!--
 <section id="projects" style="background: white;">
     <div class="container">
         <div class="section-header">
@@ -693,7 +695,6 @@ footer {
             <div class="divider"></div>
         </div>
         <div class="projects-grid">
-            <!-- Project 1 -->
             <article class="project-card">
                 <img src="https://picsum.photos/seed/med1/400/300" alt="Project 1" class="project-img">
                 <div class="project-content">
@@ -702,8 +703,6 @@ footer {
                     <a href="#" class="project-link">View Details <i class="ph ph-arrow-right"></i></a>
                 </div>
             </article>
-
-            <!-- Project 2 -->
             <article class="project-card">
                 <img src="https://picsum.photos/seed/ai2/400/300" alt="Project 2" class="project-img">
                 <div class="project-content">
@@ -712,8 +711,6 @@ footer {
                     <a href="#" class="project-link">View Details <i class="ph ph-arrow-right"></i></a>
                 </div>
             </article>
-
-            <!-- Project 3 -->
             <article class="project-card">
                 <img src="https://picsum.photos/seed/vision3/400/300" alt="Project 3" class="project-img">
                 <div class="project-content">
@@ -725,8 +722,12 @@ footer {
         </div>
     </div>
 </section>
+-->
+<!-- PROJECTS SECTION HIDDEN END -->
 
-<!-- Gallery Section -->
+
+<!-- GALLERY SECTION HIDDEN START -->
+<!--
 <section id="gallery">
     <div class="container">
         <div class="section-header">
@@ -754,6 +755,9 @@ footer {
         </div>
     </div>
 </section>
+-->
+<!-- GALLERY SECTION HIDDEN END -->
+
 
 <!-- Publications Section -->
 <section id="publications" style="background: white;">
